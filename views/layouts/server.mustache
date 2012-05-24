@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="stylesheet" href="/static/stylesheets/bootstrap.min.css" type="text/css">
+	<link rel="stylesheet" href="/static/stylesheets/style.css" type="text/css">
+    <script src="/static/javascripts/jquery.js"></script>
+    <script src="/static/javascripts/template-2.0.0.min.js"></script>
+    <script src="/templates.js"></script>
+	<title>Shared pre-compiled hogan template example</title>
+</head>
+<body>
+    <article>
+    {{>article}}
+    </article>
+    <fieldset>
+        <legend>Change the article contents</legend>
+        <form class="well">
+            <label>Headline</label>
+            <input type="text" class="span4" name="headline" value="This is a client-side rendered headline">
+            <label>
+                Body
+                <textarea class="span4" name="bodyText" rows="5">This is a client-side rendered body</textarea>
+            </label>
+            <button type="submit" class="btn">Submit</button>
+        </form>
+    </fieldset>
+    <script>
+        
+        $.fn.serializeObject = function()
+        {
+            var o = {};
+            var a = this.serializeArray();
+            $.each(a, function() {
+                if (o[this.name] !== undefined) {
+                    if (!o[this.name].push) {
+                        o[this.name] = [o[this.name]];
+                    }
+                    o[this.name].push(this.value || '');
+                } else {
+                    o[this.name] = this.value || '';
+                }
+            });
+            return o;
+        };
+
+        $(function() {
+            var article = $("article"),
+                form = $("form");
+            form.submit(function(event) {
+                event.preventDefault();
+                article.html(templates.article(form.serializeObject()));
+            });
+        });
+    </script>
+</body>
+</html>
