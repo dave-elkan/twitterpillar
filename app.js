@@ -28,8 +28,29 @@ router.addRoute("/templates.js", function(req, res) {
     res.end(response);
 });
 
+router.addRoute("/article", function(req, res) {
+
+    var response = JSON.stringify({
+        headline: "This is a headline",
+        bodyText: "This is a body text"
+    });
+
+    res.writeHead(200, {
+        'Content-Length': response.length,
+        'Content-Type': "text/json"
+    });
+
+    res.end(response);
+});
+
 var http = require("http"),
     server = http.createServer(function(req, res) {
+
+        if (process.env.NODE_ENV !== "production" && req.headers["accept"].indexOf("text/html") > -1) {
+            hoganTemplateCompiler.read();
+            req.reloaded = true;
+        }
+
         var route = router.match(req.url);
         if (!route) {
             res.writeHead(404, {
@@ -38,7 +59,6 @@ var http = require("http"),
             });
             res.end("404");
         } else {
-            req.splats = route.splats;
             route.fn(req, res);
         }
     });
