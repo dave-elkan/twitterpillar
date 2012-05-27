@@ -1,0 +1,22 @@
+<tr>
+    <td align="right" valign="top" class="title">{{index}}.</td>
+    <td>
+        <center>
+            <a id="up_{{id}}" onclick="return vote(this)" href="vote?for={{id}}&amp;dir=up&amp;by=daveelkan&amp;auth=e0f23f51eb414df21bcb98ea7a97d626399750dd&amp;whence=%6e%65%77%73">
+                <img src="/static/images/grayarrow.gif" border="0" vspace="3" hspace="2" width="10" height="10">
+            </a>
+            <span id="down_{{id}}"></span>
+        </center>
+    </td>
+    <td class="title">
+        <a href="{{url}}">{{title}}</a>
+        <!--span class="comhead"> ({{url}}) </span-->
+    </td>
+</tr>
+<tr>
+    <td colspan="2"></td>
+    <td class="subtext">
+        <span id="score_{{id}}">{{points}} points</span> by <a href="user?id={{postedBy}}">{{postedBy}}</a> {{postedAgo}} | <a href="item?id={{id}}">{{commentCount}} comments</a>
+    </td>
+</tr>
+<tr style="height:5px"></tr>

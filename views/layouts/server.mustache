@@ -1,45 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<link rel="stylesheet" href="/static/stylesheets/bootstrap.min.css" type="text/css">
-	<link rel="stylesheet" href="/static/stylesheets/style.css" type="text/css">
-    <script src="/static/javascripts/jquery.js"></script>
+	{{>head}}
     <script src="/static/javascripts/template-2.0.0.min.js"></script>
     <script src="/templates.js"></script>
-	<title>Shared pre-compiled hogan template example</title>
 </head>
 <body>
-    {{>article}}
-    {{>updateArticleForm}}
-    <script>
-        var start = new Date().getTime();
-        $.fn.serializeObject = function()
-        {
-            var o = {};
-            var a = this.serializeArray();
-            $.each(a, function() {
-                if (o[this.name] !== undefined) {
-                    if (!o[this.name].push) {
-                        o[this.name] = [o[this.name]];
-                    }
-                    o[this.name].push(this.value || '');
-                } else {
-                    o[this.name] = this.value || '';
-                }
-            });
-            return o;
-        };
-
-        $(function() {
-            var article = $("article"),
-                form = $("form");
-            form.submit(function(event) {
-                event.preventDefault();
-                article.html(templates.article(form.serializeObject()));
-            });
-            console.log(new Date().getTime() - start);
-        });
-    </script>
+    {{>table}}
 </body>
 </html>

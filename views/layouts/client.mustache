@@ -1,35 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" href="/static/stylesheets/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="/static/stylesheets/style.css" type="text/css">
-    <script src="/static/javascripts/jquery.js"></script>
+    {{>head}}
     <script src="/static/javascripts/hogan-2.0.0.min.js"></script>
-    <!--script src="/static/javascripts/template-2.0.0.min.js"></script-->
-    <title>Client-side compiled and rendered templates</title>
 </head>
 <body>
-    <script type="text/template" id="articleTemplate">
-        {{{articleTemplate}}}
+    <script type="text/template" id="table">
+        {{{table}}}
     </script>
-    <script type="text/template" id="updateArticleFormTemplate">
-        {{{updateArticleFormTemplate}}}
+    <script type="text/template" id="newsItems">
+        {{{newsItems}}}
+    </script>
+    <script type="text/template" id="newsItem">
+        {{{newsItem}}}
+    </script>
+    <script type="text/template" id="footer">
+        {{{footer}}}
     </script>
     <script type="text/javascript">
-        var start = new Date().getTime(),
-             article = {
-                 headline: "This is a client-rendered headline",
-                 bodyText: "This is a client-rendered body"
-             };
         $(function() {
-            var articleTemplate = Hogan.compile($.trim($("#articleTemplate").text())),
-                updateArticleFormTemplate = Hogan.compile($.trim($("#updateArticleFormTemplate").text())),
+            var table = Hogan.compile($.trim($("#table").text())),
+                newsItems = Hogan.compile($.trim($("#newsItems").text())),
+                newsItem = Hogan.compile($.trim($("#newsItem").text())),
+                footer = Hogan.compile($.trim($("#footer").text())),
+                data = {{{data}}},
                 $body = $("body");
 
-            $body.append(articleTemplate.render(article));
-            $body.append(updateArticleFormTemplate.render());
-            console.log(new Date().getTime() - start);
+                $body.append(table.render(data, {
+                    newsItems: newsItems,
+                    newsItem: newsItem,
+                    footer: footer,
+                    data: data
+                }));
         });
     </script>
 </body>

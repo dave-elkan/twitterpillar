@@ -1,14 +1,19 @@
 var fs = require("fs"),
-    articleTemplate = fs.readFileSync(__dirname + "/views/partials/article.mustache", "utf8"),
-    updateArticleFormTemplate = fs.readFileSync(__dirname + "/views/partials/updateArticleForm.mustache", "utf8");
+    table = fs.readFileSync(__dirname + "/views/partials/table.mustache", "utf8"),
+    footer = fs.readFileSync(__dirname + "/views/partials/footer.mustache", "utf8"),
+    newsItems = fs.readFileSync(__dirname + "/views/partials/newsItems.mustache", "utf8"),
+    newsItem = fs.readFileSync(__dirname + "/views/partials/newsItem.mustache", "utf8");
 
-function ClientSideRenderer(hoganTemplateCompiler) {
+function ClientSideRenderer(hoganTemplateCompiler, data) {
 
     return function(req, res) {
 
         var renderedTemplate = hoganTemplateCompiler.renderLayout("client", {
-            articleTemplate: articleTemplate,
-            updateArticleFormTemplate: updateArticleFormTemplate
+            newsItems: newsItems,
+            newsItem: newsItem,
+            table: table,
+            footer: footer,
+            data: JSON.stringify(data)
         });
 
         res.writeHead(200, {

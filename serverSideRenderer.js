@@ -1,11 +1,8 @@
-function ServerSideRenderer(hoganTemplateCompiler) {
+function ServerSideRenderer(hoganTemplateCompiler, data) {
 
     return function (req, res) {
 
-        var renderedTemplate = hoganTemplateCompiler.renderLayout("server", {
-            headline: "This is a server-side rendered headline",
-            bodyText: "This is a server-side rendered body"
-        });
+        var renderedTemplate = hoganTemplateCompiler.renderLayout("server", data);
 
         res.writeHead(200, {
             'Content-Length': renderedTemplate.length,

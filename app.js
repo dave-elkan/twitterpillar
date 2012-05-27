@@ -10,13 +10,12 @@ var router = require("routes").Router(),
         partialsDirectory: partialsDirectory
     });
 
-var serverSideRenderer = require('./serverSideRenderer')(hoganTemplateCompiler),
-    clientSideRenderer = require('./clientSideRenderer')(hoganTemplateCompiler),
-    static = require("./static");
+var serverSideRenderer = require('./serverSideRenderer')(hoganTemplateCompiler, data),
+    clientSideRenderer = require('./clientSideRenderer')(hoganTemplateCompiler, data);
 
 router.addRoute("/server", serverSideRenderer);
 router.addRoute("/client", clientSideRenderer);
-router.addRoute("/static/*?", static)
+router.addRoute("/static/*?", static);
 
 router.addRoute("/templates.js", function(req, res) {
     var response = hoganTemplateCompiler.getSharedTemplates();
@@ -28,19 +27,12 @@ router.addRoute("/templates.js", function(req, res) {
     res.end(response);
 });
 
-router.addRoute("/article", function(req, res) {
-
-    var response = JSON.stringify({
-        headline: "This is a headline",
-        bodyText: "This is a body text"
-    });
-
+router.addRoute("/data", function(req, res) {
+    var articles = JSON.stringify(data);
     res.writeHead(200, {
-        'Content-Length': response.length,
-        'Content-Type': "text/json"
+        'Content-Type': 'application/json'
     });
-
-    res.end(response);
+    res.end(articles);
 });
 
 var http = require("http"),
@@ -48,7 +40,6 @@ var http = require("http"),
 
         if (process.env.NODE_ENV !== "production" && req.headers["accept"].indexOf("text/html") > -1) {
             hoganTemplateCompiler.read();
-            req.reloaded = true;
         }
 
         var route = router.match(req.url);
@@ -63,60 +54,4 @@ var http = require("http"),
         }
     });
 
-server.listen(3000)
-
-
-/**
- * An Express compatible template compiler.
-
-var hoganCompiler = {
-    compile: function(source, options) {
-        var template;
-        if (options.filename.toLowerCase().indexOf("layout") > -1) {
-            template = hoganTemplateCompiler.compileTemplateFile(options.filename);
-        } else {
-            template = hoganTemplateCompiler.getTemplate(options.filename);
-        }
-
-        return function(locals) {
-            return template.render(locals, hoganTemplateCompiler.getPartials());
-        };
-    }
-};
- */
-/**
- * Request handler for pre-compiled hogan.js templates.
- *
- * This function uses a hogan template of it's own which renders
- * calls to Hogan.Template. See views/sharedTemplates.mustache.
-
-app.get("/templates.js",  function(req, res) {
-    res.contentType("templates.js");
-    res.send(hoganTemplateCompiler.getSharedTemplates());
-});
- */
-/**
- * Request handler for the homepage.
- *
- * Renders a hogan template on the server side which contains a form
- * which will update the article section on the client using the
- * pre-compiled template.
-
-app.get("/server", function(req, res) {
-    res.render("layout", {
-        headline: "This is a server-side rendered headline",
-        bodyText: "This is some bodytext"
-    });
-});
-
-app.get("/client", function(req, res) {
-    res.render("dynamicLayout", {
-        headline: "This is a server-side rendered headline",
-        bodyText: "This is some bodytext"
-    });
-});
-
-app.listen(3000);
-console.log("Express server listening on port %d", app.address().port);
-
- */
+server.listen(3000);
