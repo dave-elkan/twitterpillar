@@ -25,9 +25,6 @@ var serverSideRenderer = require('./serverSideRenderer')(hoganTemplateCompiler, 
 router.addRoute("/server", serverSideRenderer);
 router.addRoute("/client", clientSideRenderer);
 router.addRoute("/static/*?", static);
-router.addRoute("/twitter", function(req, res) {
-
-});
 
 router.addRoute("/templates.js", function(req, res) {
     var response = hoganTemplateCompiler.getSharedTemplates();
