@@ -10,12 +10,24 @@ var router = require("routes").Router(),
         partialsDirectory: partialsDirectory
     });
 
+    var static = require("./static"),
+        fs = require("fs"),
+        data = JSON.parse(fs.readFileSync(__dirname + "/input/hackernews.json", "utf8")),
+        i = 0;
+
+    data.items.forEach(function(d) {
+        d.index = ++i;
+    });
+
 var serverSideRenderer = require('./serverSideRenderer')(hoganTemplateCompiler, data),
     clientSideRenderer = require('./clientSideRenderer')(hoganTemplateCompiler, data);
 
 router.addRoute("/server", serverSideRenderer);
 router.addRoute("/client", clientSideRenderer);
 router.addRoute("/static/*?", static);
+router.addRoute("/twitter", function(req, res) {
+
+});
 
 router.addRoute("/templates.js", function(req, res) {
     var response = hoganTemplateCompiler.getSharedTemplates();
