@@ -1,4 +1,6 @@
-function ServerSideRenderer(hoganTemplateCompiler, twitterService) {
+var twitterService = require("./twitterService");
+
+function HomeController(hoganTemplateCompiler) {
 
     return function (req, res) {
 
@@ -20,4 +22,4 @@ function ServerSideRenderer(hoganTemplateCompiler, twitterService) {
     }
 }
 
-module.exports = ServerSideRenderer;
+module.exports = HomeController;

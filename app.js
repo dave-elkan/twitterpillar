@@ -5,33 +5,17 @@ var router = require("routes").Router(),
     layoutDirectory = viewDirectory + "/layouts",
     partialsDirectory = viewDirectory + "/partials",
 
-    twitterService = require('./twitterService'),
-    followController = require("./twitterController"),
-
     hoganTemplateCompiler = HoganTemplateCompiler({
         layoutsDirectory: layoutDirectory,
         partialsDirectory: partialsDirectory
-    });
+    }),
 
-    var static = require("./static"),
-        fs = require("fs"),
-        data = JSON.parse(fs.readFileSync(__dirname + "/input/hackernews.json", "utf8")),
-        i = 0;
-
-    data.items.forEach(function(d) {
-        d.index = ++i;
-    });
-
-var serverSideRenderer = require('./serverSideRenderer')(hoganTemplateCompiler, twitterService),
-    clientSideRenderer = require('./clientSideRenderer')(hoganTemplateCompiler, data),
-    followerController = require("./twitterController");
-
-router.addRoute("/server", serverSideRenderer);
-router.addRoute("/client", clientSideRenderer);
-
-router.addRoute("/tweeter/:screenName", followController);
+    static = require("./static"),
+    homeController = require('./homeController')(hoganTemplateCompiler),
+    followerController = require("./twitterController")(hoganTemplateCompiler);
 
 router.addRoute("/static/*?", static);
+router.addRoute("/", homeController);
 
 router.addRoute("/templates.js", function(req, res) {
     var response = hoganTemplateCompiler.getSharedTemplates();
@@ -50,6 +34,8 @@ router.addRoute("/data", function(req, res) {
     });
     res.end(articles);
 });
+
+router.addRoute("/:screenName", followerController);
 
 var http = require("http"),
     server = http.createServer(function(req, res) {
