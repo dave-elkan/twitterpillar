@@ -6,7 +6,7 @@ function HomeController(hoganTemplateCompiler) {
 
         twitterService.getFollowers("edave", function(err, followers) {
 
-            var renderedTemplate = hoganTemplateCompiler.renderLayout("server", {
+            var renderedTemplate = hoganTemplateCompiler.renderLayout("layout", {
                 followers: followers,
                 followersJSON: JSON.stringify(followers),
                 tweeter: followers[0]

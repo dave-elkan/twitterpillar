@@ -5,4 +5,4 @@ TweeterRouter = Backbone.Router.extend({
         ":screenName": "tweeter"
     }
 
-})
+});
