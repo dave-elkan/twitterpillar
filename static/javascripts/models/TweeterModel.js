@@ -1,0 +1,2 @@
+TweeterModel = Backbone.Model.extend({
+});

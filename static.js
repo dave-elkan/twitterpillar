@@ -1,5 +1,4 @@
-var filed = require("filed"),
-    path = require("path");
+var filed = require("filed");
 
 function static (req, res) {
 

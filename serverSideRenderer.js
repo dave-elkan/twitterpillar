@@ -1,15 +1,22 @@
-function ServerSideRenderer(hoganTemplateCompiler, data) {
+function ServerSideRenderer(hoganTemplateCompiler, twitterService) {
 
     return function (req, res) {
 
-        var renderedTemplate = hoganTemplateCompiler.renderLayout("server", data);
+        twitterService.getFollowers("edave", function(err, followers) {
 
-        res.writeHead(200, {
-            'Content-Length': renderedTemplate.length,
-            'Content-Type': 'text/html'
+            var renderedTemplate = hoganTemplateCompiler.renderLayout("server", {
+                followers: followers,
+                followersJSON: JSON.stringify(followers),
+                tweeter: followers[0]
+            });
+
+            res.writeHead(200, {
+                'Content-Length': renderedTemplate.length,
+                'Content-Type': 'text/html'
+            });
+
+            res.end(renderedTemplate);
         });
-
-        res.end(renderedTemplate);
     }
 }
 

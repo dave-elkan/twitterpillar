@@ -5,6 +5,9 @@ var router = require("routes").Router(),
     layoutDirectory = viewDirectory + "/layouts",
     partialsDirectory = viewDirectory + "/partials",
 
+    twitterService = require('./twitterService'),
+    followController = require("./twitterController"),
+
     hoganTemplateCompiler = HoganTemplateCompiler({
         layoutsDirectory: layoutDirectory,
         partialsDirectory: partialsDirectory
@@ -19,11 +22,15 @@ var router = require("routes").Router(),
         d.index = ++i;
     });
 
-var serverSideRenderer = require('./serverSideRenderer')(hoganTemplateCompiler, data),
-    clientSideRenderer = require('./clientSideRenderer')(hoganTemplateCompiler, data);
+var serverSideRenderer = require('./serverSideRenderer')(hoganTemplateCompiler, twitterService),
+    clientSideRenderer = require('./clientSideRenderer')(hoganTemplateCompiler, data),
+    followerController = require("./twitterController");
 
 router.addRoute("/server", serverSideRenderer);
 router.addRoute("/client", clientSideRenderer);
+
+router.addRoute("/tweeter/:screenName", followController);
+
 router.addRoute("/static/*?", static);
 
 router.addRoute("/templates.js", function(req, res) {
@@ -59,7 +66,7 @@ var http = require("http"),
             });
             res.end("404");
         } else {
-            route.fn(req, res);
+            route.fn(req, res, route.params);
         }
     });
 

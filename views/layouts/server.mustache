@@ -2,10 +2,28 @@
 <html>
 <head>
 	{{>head}}
-    <script src="/static/javascripts/template-2.0.0.min.js"></script>
-    <script src="/templates.js"></script>
 </head>
 <body>
-    {{>table}}
+    <div class="row">
+        {{>leftnav}}
+        {{#tweeter}}
+            {{>tweeter}}
+        {{/tweeter}}
+    </div>
+    <script src="/static/javascripts/lib/jquery.js"></script>
+    <script src="/static/javascripts/lib/template-2.0.0.min.js"></script>
+    <script src="/templates.js"></script>
+    <script src="/static/javascripts/lib/underscore.js"></script>
+    <script src="/static/javascripts/lib/backbone.js"></script>
+    <script src="/static/javascripts/TweeterRouter.js"></script>
+    <script src="/static/javascripts/models/TweeterAppModel.js"></script>
+    <script src="/static/javascripts/models/TweeterModel.js"></script>
+    <script src="/static/javascripts/models/TweeterCollection.js"></script>
+    <script src="/static/javascripts/views/TweeterView.js"></script>
+    <script src="/static/javascripts/views/TweeterNavView.js"></script>
+    <script src="/static/javascripts/FollowersApp.js"></script>
+    <script>
+        var followers = {{{followersJSON}}};
+    </script>
 </body>
 </html>
