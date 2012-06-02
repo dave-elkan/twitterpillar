@@ -12,7 +12,7 @@ var router = require("routes").Router(),
 
     static = require("./static"),
     homeController = require('./homeController')(hoganTemplateCompiler),
-    followerController = require("./twitterController")(hoganTemplateCompiler);
+    followerController = require("./followerController")(hoganTemplateCompiler);
 
 router.addRoute("/static/*?", static);
 router.addRoute("/", homeController);
