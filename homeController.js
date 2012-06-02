@@ -13,7 +13,7 @@ function HomeController(hoganTemplateCompiler) {
             });
 
             res.writeHead(200, {
-                'Content-Length': renderedTemplate.length,
+                'Content-Length': Buffer.byteLength(renderedTemplate),
                 'Content-Type': 'text/html'
             });
 

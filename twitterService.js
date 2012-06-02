@@ -1,5 +1,6 @@
 var twitterAuth = require("./twitterAuth"),
     twitter = require('ntwitter'),
+    async = require("async"),
     fs = require("fs");
 
 var twit = new twitter(twitterAuth);
@@ -49,6 +50,20 @@ module.exports = {
         } else {
             // blah
         }
+    },
+
+    getFollowersAndAUsersDetails: function(followeeScreenName, detailsScreenName, callback) {
+        var self = this;
+        async.parallel({
+            followers:
+                function(callback) {
+                    self.getFollowers(followeeScreenName, callback)
+                },
+            details:
+                function(callback) {
+                    self.getUserDetails(detailsScreenName, callback);
+            }
+        }, callback);
     },
 
     getUsersTweets: function(userName, callback) {

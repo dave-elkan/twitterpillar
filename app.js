@@ -11,8 +11,8 @@ var router = require("routes").Router(),
     }),
 
     static = require("./static"),
-    homeController = require('./homeController')(hoganTemplateCompiler),
-    followerController = require("./followerController")(hoganTemplateCompiler);
+    homeController = require('./HomeController')(hoganTemplateCompiler),
+    followerController = require("./FollowerController")(hoganTemplateCompiler);
 
 router.addRoute("/static/*?", static);
 router.addRoute("/", homeController);

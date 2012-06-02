@@ -9,8 +9,10 @@ TweeterNavView = Backbone.View.extend({
     },
 
     displayTweeter: function(e) {
-        e.preventDefault();
-        Backbone.history.navigate($(e.target).data("screen_name"), true);
+        if (window.history && history.pushState) {
+            e.preventDefault();
+            Backbone.history.navigate($(e.target).data("screen_name"), true);
+        }
     }
 
 });

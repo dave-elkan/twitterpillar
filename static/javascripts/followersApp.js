@@ -20,7 +20,9 @@ $(function() {
     tweeterRouter.on("route:tweeter", tweeterApp.setSelectedTweeter);
     tweeterRouter.on("route:home", tweeterApp.resetSelectedTweeter);
 
-    Backbone.history.start({
-        pushState: true
-    });
+    if (window.history && history.pushState) {
+        Backbone.history.start({
+            pushState: true
+        });
+    }
 });
