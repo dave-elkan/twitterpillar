@@ -4,24 +4,29 @@
 	{{>head}}
 </head>
 <body>
-    <div class="row">
-        {{>leftnav}}
-        {{#tweeter}}
-            {{>tweeter}}
-        {{/tweeter}}
+    <div class="container-fluid">
+        <div class="row-fluid">
+            {{>leftnav}}
+            {{#tweeter}}
+                <div class="span9">
+                {{>tweeter}}
+                </div>
+            {{/tweeter}}
+        </div>
     </div>
-    <script src="/static/javascripts/lib/jquery.js"></script>
-    <script src="/static/javascripts/lib/template-2.0.0.min.js"></script>
+    <script src="/static/js/lib/jquery.js"></script>
+    <script src="/static/js/lib/template-2.0.0.min.js"></script>
     <script src="/templates.js"></script>
-    <script src="/static/javascripts/lib/underscore.js"></script>
-    <script src="/static/javascripts/lib/backbone.js"></script>
-    <script src="/static/javascripts/TweeterRouter.js"></script>
-    <script src="/static/javascripts/models/TweeterAppModel.js"></script>
-    <script src="/static/javascripts/models/TweeterModel.js"></script>
-    <script src="/static/javascripts/models/TweeterCollection.js"></script>
-    <script src="/static/javascripts/views/TweeterView.js"></script>
-    <script src="/static/javascripts/views/TweeterNavView.js"></script>
-    <script src="/static/javascripts/FollowersApp.js"></script>
+    <script src="/static/js/lib/underscore.js"></script>
+    <script src="/static/js/lib/backbone.js"></script>
+    <script src="/static/js/TweeterRouter.js"></script>
+    <script src="/static/js/models/TweeterModel.js"></script>
+    <script src="/static/js/models/TweeterCollection.js"></script>
+    <script src="/static/js/models/TweetCollection.js"></script>
+    <script src="/static/js/views/TweeterView.js"></script>
+    <script src="/static/js/views/TweeterNavView.js"></script>
+    <script src="/static/js/views/TitleView.js"></script>
+    <script src="/static/js/FollowersApp.js"></script>
     <script>
         var followers = {{{followersJSON}}};
     </script>

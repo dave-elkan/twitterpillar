@@ -1,5 +1,6 @@
 var router = require("routes").Router(),
     HoganTemplateCompiler = require('hogan-template-compiler'),
+    filed = require("filed"),
 
     viewDirectory = __dirname + "/views",
     layoutDirectory = viewDirectory + "/layouts",
@@ -11,12 +12,11 @@ var router = require("routes").Router(),
     }),
 
     static = require("./static"),
-    homeController = require('./HomeController')(hoganTemplateCompiler),
-    followerController = require("./FollowerController")(hoganTemplateCompiler);
+    homeController = require('./lib/controllers/HomeController')(hoganTemplateCompiler),
+    followerController = require("./lib/controllers/FollowerController")(hoganTemplateCompiler);
 
 router.addRoute("/static/*?", static);
 router.addRoute("/", homeController);
-
 router.addRoute("/templates.js", function(req, res) {
     var response = hoganTemplateCompiler.getSharedTemplates();
 
@@ -27,12 +27,8 @@ router.addRoute("/templates.js", function(req, res) {
     res.end(response);
 });
 
-router.addRoute("/data", function(req, res) {
-    var articles = JSON.stringify(data);
-    res.writeHead(200, {
-        'Content-Type': 'application/json'
-    });
-    res.end(articles);
+router.addRoute("/favicon.ico", function(req, res) {
+    filed(__dirname + "/static/images/favicon.ico").pipe(res);
 });
 
 router.addRoute("/:screenName", followerController);

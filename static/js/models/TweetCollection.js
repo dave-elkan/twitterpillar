@@ -1,0 +1,3 @@
+TweetCollection = Backbone.Collection.extend({
+
+});

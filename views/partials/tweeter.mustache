@@ -1,3 +1,25 @@
-<section id="tweeter" data-screen_name="{{screen_name}}" class="span6">
-    <h1>{{name}}</h1><img src="{{profile_image_url}}" width="48" height="48" alt="">
-</section>
+<div id="tweeter" data-screen_name="{{screen_name}}">
+    <div class="row-fluid">
+        <div class="span2 image">
+            <span></span>
+            <img src="{{profile_image_url}}" />
+        </div>
+        <div class="span10">
+            <h1>{{name}}</h1>
+            <h3>@{{screen_name}}</h3>
+            <p>
+                {{description}}
+                {{#location}}<br />{{location}}{{/location}}{{#url}} - <a href="{{url}}">{{url}}</a>{{/url}}</p>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="page-header">
+            <h1>Tweets</h1>
+        </div>
+        <div class="span9{{^tweets}} loading{{/tweets}}">
+            {{#tweets}}
+            <p>{{text}}</p>
+            {{/tweets}}
+        </div>
+    </div>
+</div>

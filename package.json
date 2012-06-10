@@ -8,7 +8,10 @@
     "version": "1.0.0",
     "dependencies": {
         "routes": "0.1.1",
-        "hogan-template-compiler": "1.0.3"
+        "hogan-template-compiler": "1.0.3",
+        "async": "0.1.22",
+        "filed": "0.0.6",
+        "ntwitter": "0.3.0"
     },
     "engines": {
         "node": ">=0.6.0"

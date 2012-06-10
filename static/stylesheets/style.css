@@ -1,20 +1,26 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    padding: 20px 0
 }
 
-a {
-  color: #00B7FF;
+.span9.loading {
+    background: url("/static/images/throbber.gif") no-repeat 50% 0;
+    height: 50px;
 }
 
-fieldset {
-    margin-top: 4em;
+.image {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    width: 128px;
+    height: 128px;
 }
 
-ul {
-    margin-left: 0
+.image * {
+    vertical-align: middle;
 }
 
-li {
-    list-style-type: none;
+.image span {
+    display: inline-block;
+    height: 100%;
+    width: 1px;
 }

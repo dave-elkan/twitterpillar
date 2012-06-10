@@ -1,5 +1,10 @@
-<ul id="followers" class="span4">
-{{#followers}}
-    <li><a href="/{{screen_name}}" data-screen_name="{{screen_name}}">{{name}}</a></li>
-{{/followers}}
-</ul>
+<div class="span3">
+    <ul id="followers" class="nav nav-tabs nav-stacked">
+        <li class="nav-header">Followers</li>
+        {{#followers}}
+            <li>
+                <a href="/{{screen_name}}" data-screen_name="{{screen_name}}">{{name}}</a>
+            </li>
+        {{/followers}}
+    </ul>
+</div>
