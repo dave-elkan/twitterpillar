@@ -2,7 +2,8 @@ TweeterRouter = Backbone.Router.extend({
 
     routes: {
         "": "home",
-        ":screenName": "tweeter"
+        ":followeeScreenName": "followee",
+        ":followeeScreenName/follower/:followerScreenName": "followeeWithFollower"
     }
 
 });

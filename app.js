@@ -31,7 +31,8 @@ router.addRoute("/favicon.ico", function(req, res) {
     filed(__dirname + "/static/images/favicon.ico").pipe(res);
 });
 
-router.addRoute("/:screenName", followerController);
+router.addRoute("/:tweeterScreenName", followerController);
+router.addRoute("/:tweeterScreenName/follower/:followerScreenName", followerController);
 
 var http = require("http"),
     server = http.createServer(function(req, res) {

@@ -1,10 +1,10 @@
 TweeterView = Backbone.View.extend({
 
-    template: templates.tweeter,
+    template: templates.selectedFollower,
 
     initialize: function() {
         _.bindAll(this);
-        this.model.on("change:tweets", this.render);
+        this.model.on("change", this.render);
     },
 
     render: function() {
@@ -13,13 +13,6 @@ TweeterView = Backbone.View.extend({
         this.$el.remove();
         this.$el = $el;
         return this.$el;
-    },
-
-    update: function(model) {
-        if (this.$el.data("screen_name") !== model.get("screen_name")) {
-            this.model = model;
-            this.render();
-        }
     }
 
 });

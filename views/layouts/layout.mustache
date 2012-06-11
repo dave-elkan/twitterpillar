@@ -7,11 +7,11 @@
     <div class="container-fluid">
         <div class="row-fluid">
             {{>leftnav}}
-            {{#tweeter}}
+            {{#selectedFollower}}
                 <div class="span9">
-                {{>tweeter}}
+                {{>selectedFollower}}
                 </div>
-            {{/tweeter}}
+            {{/selectedFollower}}
         </div>
     </div>
     <script src="/static/js/lib/jquery.js"></script>
@@ -20,6 +20,7 @@
     <script src="/static/js/lib/underscore.js"></script>
     <script src="/static/js/lib/backbone.js"></script>
     <script src="/static/js/TweeterRouter.js"></script>
+    <script src="/static/js/models/TweeterAppModel.js"></script>
     <script src="/static/js/models/TweeterModel.js"></script>
     <script src="/static/js/models/TweeterCollection.js"></script>
     <script src="/static/js/models/TweetCollection.js"></script>

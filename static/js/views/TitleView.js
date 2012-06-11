@@ -4,12 +4,13 @@ TitleView = Backbone.View.extend({
 
     initialize: function() {
         _.bindAll(this);
-        this.model.on("change", this.render);
+        this.model.on("change:follower", this.render);
     },
 
-    render: function(model) {
+    render: function() {
+        var selectedFollower = this.model.getFollower();
         this.$el.html(templates.title({
-            tweeter: model.toJSON()
+            selectedFollower: selectedFollower.toJSON()
         }));
     }
 });

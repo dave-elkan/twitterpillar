@@ -1,25 +1,18 @@
 $(function() {
     var tweeterCollection = new TweeterCollection(followers);
-    var tweeterRouter = new TweeterRouter();
+    var followersAppModel = new FollowersAppModel({
+        collection: tweeterCollection
+    });
 
     new TweeterNavView({
-        collection: tweeterCollection,
+        model: followersAppModel,
         el: $("#followers")
     });
 
-    var tweeterView = new TweeterView({
-        model: tweeterCollection,
-        el: $("#tweeter")
-    });
-
     new TitleView({
-        model: tweeterCollection,
+        model: followersAppModel,
         el: $("title")
     });
-
-    tweeterRouter.on("route:tweeter", tweeterCollection.setSelected);
-    tweeterRouter.on("route:home", tweeterCollection.resetSelected);
-    tweeterCollection.on("change", tweeterView.update);
 
     if (window.history && history.pushState) {
         Backbone.history.start({
@@ -27,3 +20,7 @@ $(function() {
         });
     }
 });
+
+// /          -> Form
+// /screenName -> List of followers -> 1st tweets
+// /screenName/follower/followerScreenName -> List of followers -> Selected users details and tweets
