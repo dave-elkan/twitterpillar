@@ -7,6 +7,9 @@ FollowersAppModel = Backbone.Model.extend({
 
         this.router.on("route:followee", this.setFollowee);
         this.router.on("route:followeeWithFollower", this.setFolloweeAndFollower);
+        this.router.on("route:followee", _.bind(function() {
+            this.setFollower(this.collection.at(0).get("screen_name"));
+        }, this));
 //        tweeterRouter.on("route:home", this.collection.resetSelected);
     },
 
