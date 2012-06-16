@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {{>head}}
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="hero-unit">
+            <h1>Follow a follower's followers</h1>
+            <form action="/">
+                <label for="screenName">Enter a screen name</label>
+                <input id="screenName" type="text"/>
+                <input type="submit" />
+            </form>
+        </div>
+    </div>
+</div>
+<script src="/static/js/lib/jquery.js"></script>
+<script>
+    $("form").submit(function(e) {
+        e.preventDefault();
+        window.location.href = "/" + $("#screenName").val();
+    });
+</script>
+</body>
+</html>
