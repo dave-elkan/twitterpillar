@@ -1,10 +1,10 @@
 {
-    "name": "pre-compiled-vs-client-compiled-templates",
+    "name": "edave-shared-templates-example",
     "author": "Dave Elkan <dave@edave.net> (http://www.edave.net)",
     "main": "app.js",
-    "description": "This is an example app in Express on how to pre-compile and share templates between the server and client.",
+    "description": "An example app showing how to pre-compile and share templates between the server and client.",
     "homepage": "http://www.edave.net",
-    "repository": "git://github.com/dave-elkan/pre-compiled-hogan-templates",
+    "repository": "git://github.com/dave-elkan/edave-shared-templates-example",
     "version": "1.0.0",
     "dependencies": {
         "routes": "0.1.1",
