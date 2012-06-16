@@ -1,9 +1,9 @@
 <div class="span3">
-    <h3>Latest followers of @{{followee}}</h3>
+    <h3>20 followers of @{{followee}}</h3>
     <ul id="followers" class="nav nav-tabs nav-stacked">
         {{#followers}}
             <li>
-                <a href="/{{screen_name}}" data-screen_name="{{screen_name}}">{{name}}</a>
+                <a href="/{{followee}}/follower/{{screen_name}}" data-screen_name="{{screen_name}}">{{name}}</a>
             </li>
         {{/followers}}
     </ul>

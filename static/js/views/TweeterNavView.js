@@ -9,7 +9,10 @@ TweeterNavView = Backbone.View.extend({
     },
 
     displayTweeter: function(e) {
-        this.model.browseToFollower(e);
+        if (this.model.get("usePushState")) {
+            this.model.set("follower", $(e.target).data("screen_name"));
+            e.preventDefault();
+        }
     }
 
 });

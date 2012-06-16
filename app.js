@@ -11,7 +11,7 @@ var router = require("routes").Router(),
         partialsDirectory: partialsDirectory
     }),
 
-    static = require("./static"),
+    static = require("./lib/staticHandler"),
     homeController = require('./lib/controllers/HomeController')(hoganTemplateCompiler),
     followerController = require("./lib/controllers/FollowerController")(hoganTemplateCompiler);
 

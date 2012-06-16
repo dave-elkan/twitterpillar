@@ -1,0 +1,244 @@
+<!doctype html>  
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8">
+		
+		<title>Of Templates and Caterpillars</title>
+
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+		
+		<link rel="stylesheet" href="reveal.js/css/reset.css">
+		<link rel="stylesheet" href="reveal.js/css/main.css">
+		<link rel="stylesheet" href="reveal.js/css/print.css" type="text/css" media="print">
+
+		<link rel="stylesheet" href="reveal.js/lib/zenburn.css">
+        <style>
+            .reveal .slides section img {
+                border: none;
+                background: transparent;
+                -webkit-box-shadow: none
+            }
+        </style>
+	</head>
+	
+	<body>
+		
+		<div class="reveal">
+
+			<!-- Used to fade in a background when a specific slide state is reached -->
+			<div class="state-background"></div>
+			
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section style="padding-top: 10%">
+                    <h1>Of Templates and Caterpillars</h1>
+                    <h2 style="padding-top: 5%">A Template analogy</h2>
+                    <h3>...by dave elkan</h3>
+                </section>
+				
+				<!--section>
+					<h2>What you'll learn</h2>
+					<ul>
+						<li class="fragment">Lots of stuff about templates</li>
+						<li class="fragment">How to use them and not to use them</li>
+					</ul>
+				</section-->
+
+                <section>
+                    <h2>If data is a caterpillar</h2>
+                    <img src="Hungry-caterpillar.png" width="500" height="">
+                </section>
+                <section style="padding-top: 15%">
+                    <h2>...and HTML is a butterfly</h2>
+                    <img src="Hungry-caterpillar-butterfly.png" width="500" height="">
+                </section>
+
+                <!-- In essence, templates are a way to turn your data into HTML -->
+                <section style="padding-top: 9%">
+                    <h2>...then the template is the cocoon</h2>
+                    <img src="Hungry-caterpillar-cocoon.png" width="500" height="">
+                </section>
+
+                <!-- Templates are compiled from their source to a javascript function -->
+                <section>
+                    <h2>How templates are compiled</h2>
+                    <div class="fragment">
+                        <h5>A template's source</h5>
+                    <pre><code style="font-size: 18px; margin-top: 20px;">&lt;article&gt;
+    &lt;h1&gt;{{headline}}&lt;/h1&gt;
+    &lt;p&gt;{{bodyText}}&lt;/p&gt;
+&lt;/article&gt;</code></pre>
+                    </div>
+                    <div class="fragment">
+                        <h5>...becomes Javascript!</h5>
+                    <pre><code style="font-size: 18px; margin-top: 20px;" class="javascript">function article(params) {
+    return "&lt;article&gt;" +
+            "&lt;h1&gt;" + params.headline + "&lt;/h1&gt;" +
+            "&lt;p&gt;" + params.bodyText + "&lt;/p&gt;" +
+        "&lt;/article&gt";
+}</code></pre>
+</div>
+                </section>
+
+                <section style="padding-top: 9%">
+                    <h2>And then they can be rendered</h2>
+                    <h4>Data goes in. HTML comes out</h4>
+                    <img src="Hungry-caterpillar.png" width="200" height="">
+                    <img src="Hungry-caterpillar-cocoon.png" width="150" height="">
+                    <img src="Hungry-caterpillar-butterfly.png" width="250" height="">
+                </section>
+
+                <!-- That javascript function can be used to turn your data into HTML -->
+
+                <section>
+					<h2>How templates are rendered</h2>
+                    <div class="fragment">
+                        <h6>A compiled template...</h6>
+                        <pre><code style="font-size: 18px; margin-top: 20px;" class="javascript">function article(params) {
+    return "&lt;article&gt;" +
+               "&lt;h1&gt;" + params.headline + "&lt;/h1&gt;" +
+               "&lt;p&gt;" + params.bodyText + "&lt;/p&gt;" +
+           "&lt;/article&gt";
+}</code></pre></div>
+                    <div class="fragment"><h5>given data...</h5>
+                        <pre><code style="font-size: 18px; margin-top: 20px;" class="javascript">article({
+    headline: "Caterpillars revolt",
+    bodyText: "Silk price skyrockets"
+});</code></pre>
+                    </div>
+                    <div class="fragment">
+                        <h5>returns HTML</h5>
+                        <pre><code style="font-size: 18px; margin-top: 20px;">&lt;article&gt;
+    &lt;h1&gt;Caterpillars revolt&lt;/h1&gt;
+    &lt;p&gt;Silk price skyrockets&lt;/p&gt;
+&lt;/article&gt;</code></pre>
+                    </div>
+                </section>
+
+                <section style="padding-top: 15%">
+                    <h2>Templates are versatile</h2>
+                    <ul>
+                        <li class="fragment">Compile and render them on the server</li>
+                        <li class="fragment">Send them to the browser (javascript file)</li>
+                        <li class="fragment">Render them in the browser</li>
+                        <li class="fragment">
+                            Best of both worlds
+                            <ul>
+                                <li>A dynamic single page app</li>
+                                <li>With SEO</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+
+                <section style="padding-top: 25%">
+                    <h1>Twitter</h1>
+                    <p>A bad example</p>
+                </section>
+
+                <section style="padding-top: 20%">
+                    <h1>s#!t</h1>
+                    <h2 class="fragment">History API === The future</h2>
+                </section>
+
+                <section style="padding-top: 20%">
+                    <h2>an ideal solution</h2>
+                    <ul>
+                        <li>
+                            The browser and server
+                            <ul>
+                                <li>share the same templates</li>
+                                <li>can both <em>entirely</em> render any page</li>
+                            </ul>
+                        </li>
+                        <li>Use history API and AJAX for updates</li>
+                    </ul>
+                </section>
+
+                <section style="padding-top: 15%">
+                    <h2>why is this better?</h2>
+                    <ul>
+                        <li>SEO (important, but not for everyone)</li>
+                        <li>
+                            Performance
+                            <ul>
+                                <li>Deliver what the user asks for</li>
+                                <li>HTML caching</li>
+                                <li>Template caching (just a javascript file)</li>
+                                <li>Minimise onDomReady ajax</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+
+                <section style="padding-top: 25%">
+                    <h2>an example</h2>
+                </section>
+
+                <section style="padding-top: 20%">
+                    <h1>Thank you</h1>
+                    <p>npm install edave-template-example</p>
+                    <p>@edave</p>
+                    <p>edave.net</p>
+                </section>
+
+			</div>
+
+			<!-- The navigational controls UI -->
+			<aside class="controls">
+				<a class="left" href="#">&#x25C4;</a>
+				<a class="right" href="#">&#x25BA;</a>
+				<a class="up" href="#">&#x25B2;</a>
+				<a class="down" href="#">&#x25BC;</a>
+			</aside>
+
+			<!-- Displays presentation progress, max value changes via JS to reflect # of slides -->
+			<div class="progress"><span></span></div>
+			
+		</div>
+
+		<!-- Optional libraries for code syntax highlighting and classList support in IE9 -->
+		<script src="reveal.js/lib/highlight.js"></script>
+		<script src="reveal.js/lib/classList.js"></script>
+		
+		<script src="reveal.js/js/reveal.js"></script>
+		
+		<script>
+			// Parse the query string into a key/value object
+			var query = {};
+			location.search.replace( /[A-Z0-9]+?=(\w*)/gi, function(a) {
+				query[ a.split( '=' ).shift() ] = a.split( '=' ).pop();
+			} );
+
+			Reveal.initialize({
+				// Display controls in the bottom right corner
+				controls: true,
+
+				// Display a presentation progress bar
+				progress: true,
+
+				// If true; each slide will be pushed to the browser history
+				history: true,
+
+				// Loops the presentation, defaults to false
+				loop: false,
+
+				// Flags if mouse wheel navigation should be enabled
+				mouseWheel: true,
+
+				// Apply a 3D roll to links on hover
+				rollingLinks: true,
+
+				// UI style
+				theme: query.theme || 'neon', // default/neon
+
+				// Transition style
+				transition: query.transition || 'cube' // default/cube/page/concave/linear(2d)
+			});
+
+			hljs.initHighlightingOnLoad();
+		</script>
+
+	</body>
+</html>

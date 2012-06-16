@@ -5,60 +5,66 @@ FollowersAppModel = Backbone.Model.extend({
         this.collection = options.collection;
         this.router = new TweeterRouter();
 
-        this.router.on("route:followee", this.setFollowee);
-        this.router.on("route:followeeWithFollower", this.setFolloweeAndFollower);
-        this.router.on("route:followee", _.bind(function() {
-            this.setFollower(this.collection.at(0).get("screen_name"));
-        }, this));
-//        tweeterRouter.on("route:home", this.collection.resetSelected);
+        this.router.on("route:followee", this.setCurrentFollowee);
+        this.router.on("route:follower", this.browsingToFollower);
+
+        this.on("change:follower", this.setSelectedFollower);
+
+        this.set("usePushState", options.usePushState || false)
+
+        if (options.usePushState) {
+            Backbone.history.start({
+                pushState: true
+            });
+        }
     },
 
-    setFollowee: function(followeeScreenName) {
-        this.set("followee", followeeScreenName);
-    },
-
-    setFollower: function(followerScreenName) {
+    /**
+     * Called when the router detects that we're browsing to a followee/follower combination.
+     *
+     * @param followeeScreenName
+     * @param followerScreenName
+     */
+    browsingToFollower: function(followeeScreenName, followerScreenName) {
+        this.setCurrentFollowee(followeeScreenName);
         this.set("follower", followerScreenName);
+    },
+
+    /**
+     * Sets the followee's screen name from the URL
+     *
+     * @param followeeScreenName
+     */
+    setCurrentFollowee: function(followeeScreenName) {
+        if (!this.get("followee")) {
+            this.set("followee", followeeScreenName);
+        }
+    },
+
+    /**
+     * Sets the follower and routes to a URL representing that follower.
+     *
+     * @param followerScreenName The follower's screen name
+     */
+    setSelectedFollower: function(app, followerScreenName) {
         this.router.navigate(this.get("followee") + "/follower/" + followerScreenName, true);
-        var follower = this.getFollower();
         new TweeterView({
-            model: follower,
+            model: this.getSelectedFollower(),
             el: $("#tweeter")
         }).render();
     },
 
-    getFollower: function() {
+    /**
+     * Returns the model of the currently selected follower from the Follower Collection.
+     *
+     * @return {Object} The follower
+     */
+    getSelectedFollower: function() {
         var follower = this.collection.getByScreenName(this.get("follower"));
         if (!follower.get("tweets")) {
             follower.fetch();
         }
+
         return follower;
-    },
-
-    /**
-     * Only browse to a follower if the browser supports the History API.
-     * Else, simply follow the hard link.
-     *
-     * @param e The click event.
-     */
-    browseToFollower: function(e) {
-        if (window.history && history.pushState) {
-            e.preventDefault();
-            this.setFollower($(e.target).data("screen_name"));
-        }
-    },
-
-    setFolloweeAndFollower: function(followeeScreenName, followerScreenName) {
-        // Set followee on initial page load
-        if (!this.get("followee")) {
-            this.setFollowee(followeeScreenName);
-        }
-
-        // Set follower on initial page load or when it changes
-        var follower = this.get("follower");
-        if (!follower || follower !== followerScreenName) {
-            this.setFollower(followerScreenName);
-        }
     }
-
 });

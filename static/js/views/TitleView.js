@@ -8,7 +8,7 @@ TitleView = Backbone.View.extend({
     },
 
     render: function() {
-        var selectedFollower = this.model.getFollower();
+        var selectedFollower = this.model.getSelectedFollower();
         this.$el.html(templates.title({
             selectedFollower: selectedFollower.toJSON()
         }));
