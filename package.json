@@ -1,14 +1,14 @@
 {
-    "name": "edave-shared-templates-example",
+    "name": "twitterpillar",
     "author": "Dave Elkan <dave@edave.net> (http://www.edave.net)",
     "main": "app.js",
     "description": "An example app showing how to pre-compile and share templates between the server and client.",
     "homepage": "http://www.edave.net",
     "repository": {
 		"type": "git",
-	    "url": "git://github.com/dave-elkan/edave-shared-templates-example.git"
+	    "url": "git://github.com/dave-elkan/twitterpillar.git"
 	},
-	"version": "1.0.1",
+	"version": "1.0.0",
     "dependencies": {
         "routes": "0.1.1",
         "hogan-template-compiler": "2.0.0",
