@@ -54,3 +54,4 @@ var http = require("http"),
     });
 
 server.listen(3000);
+console.log("twitterpillar running at http://localhost:3000/");
