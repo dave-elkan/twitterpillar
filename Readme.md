@@ -7,4 +7,5 @@ eDave's presentation on this topic can be found (after running the app as below)
 # How to run
     $ git clone git://github.com/dave-elkan/twitterpillar.git
     $ cd twitterpillar
+    $ npm install -d
 	$ node app.js
