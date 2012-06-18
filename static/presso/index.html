@@ -45,7 +45,7 @@
 					</ul>
 				</section-->
 
-                <section>
+                <section style="padding-top: 7%">
                     <h2>If data is a caterpillar</h2>
                     <img src="Hungry-caterpillar.png" width="500" height="">
                 </section>
@@ -62,16 +62,16 @@
 
                 <!-- Templates are compiled from their source to a javascript function -->
                 <section>
-                    <h2>How templates are compiled</h2>
+                    <h2>Compiling Templates</h2>
                     <div class="fragment">
-                        <h5>A template's source</h5>
+                        <h5>A template's source (the silk)</h5>
                     <pre><code style="font-size: 18px; margin-top: 20px;">&lt;article&gt;
     &lt;h1&gt;{{headline}}&lt;/h1&gt;
     &lt;p&gt;{{bodyText}}&lt;/p&gt;
 &lt;/article&gt;</code></pre>
                     </div>
                     <div class="fragment">
-                        <h5>...becomes Javascript!</h5>
+                        <h5>...becomes Javascript! (the cocoon)</h5>
                     <pre><code style="font-size: 18px; margin-top: 20px;" class="javascript">function article(params) {
     return "&lt;article&gt;" +
             "&lt;h1&gt;" + params.headline + "&lt;/h1&gt;" +
@@ -92,23 +92,23 @@
                 <!-- That javascript function can be used to turn your data into HTML -->
 
                 <section>
-					<h2>How templates are rendered</h2>
+					<h2>Rendering Templates</h2>
                     <div class="fragment">
-                        <h6>A compiled template...</h6>
+                        <h6><img src="Hungry-caterpillar-cocoon.png" width="50" height=""> A compiled template...</h6>
                         <pre><code style="font-size: 18px; margin-top: 20px;" class="javascript">function article(params) {
     return "&lt;article&gt;" +
                "&lt;h1&gt;" + params.headline + "&lt;/h1&gt;" +
                "&lt;p&gt;" + params.bodyText + "&lt;/p&gt;" +
            "&lt;/article&gt";
 }</code></pre></div>
-                    <div class="fragment"><h5>given data...</h5>
+                    <div class="fragment"><h5><img src="Hungry-caterpillar.png" width="50" height=""> given data...</h5>
                         <pre><code style="font-size: 18px; margin-top: 20px;" class="javascript">article({
     headline: "Caterpillars revolt",
     bodyText: "Silk price skyrockets"
 });</code></pre>
                     </div>
                     <div class="fragment">
-                        <h5>returns HTML</h5>
+                        <h5><img src="Hungry-caterpillar-butterfly.png" width="50" height=""> returns HTML</h5>
                         <pre><code style="font-size: 18px; margin-top: 20px;">&lt;article&gt;
     &lt;h1&gt;Caterpillars revolt&lt;/h1&gt;
     &lt;p&gt;Silk price skyrockets&lt;/p&gt;
@@ -125,7 +125,7 @@
                         <li class="fragment">
                             Best of both worlds
                             <ul>
-                                <li>A dynamic single page app</li>
+                                <li>A dynamic 'single page' app</li>
                                 <li>With SEO</li>
                             </ul>
                         </li>
@@ -134,7 +134,7 @@
 
                 <section style="padding-top: 25%">
                     <h1>Twitter</h1>
-                    <p>A bad example</p>
+                    <p>Warning: angry butterflies ahead</p>
                 </section>
 
                 <section style="padding-top: 20%">
@@ -173,14 +173,18 @@
                 </section>
 
                 <section style="padding-top: 25%">
-                    <h2>an example</h2>
+                    <h2>twitterpillar</h2>
+                    <h5>An example app</h5>
                 </section>
 
-                <section style="padding-top: 20%">
-                    <h1>Thank you</h1>
-                    <p>npm install edave-template-example</p>
-                    <p>@edave</p>
+                <section style="padding-top: 5%">
+                    <h2>get Twitterpillar at</h2>
                     <p>edave.net</p>
+                    <br />
+                    <h3>follow me</h3>
+                    <p>@edave</p>
+                    <h1 class="fragment" style="padding-top: 2%">Thank you</h1>
+                    <p style="font-size: 50%">Caterpillar pictures copyright "The Very Hungry Caterpillar" by Eric Carle</p>
                 </section>
 
 			</div>
